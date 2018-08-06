@@ -12,7 +12,7 @@ class PoseView: UIView {
     
     var view_14: [UIView] = []
 
-    var bodyPoints: [ViewController.BodyPoint?] = [] {
+    var bodyPoints: [JointViewController.BodyPoint?] = [] {
         didSet {
             self.setNeedsDisplay()
             self.drawKeypoints(with: bodyPoints)
@@ -35,7 +35,7 @@ class PoseView: UIView {
         
         
         var x: CGFloat = 0.0
-        let y: CGFloat = 0.0
+        let y: CGFloat = self.frame.size.height - 24
         let _ = Constant.colors.map { color in
             let index = Constant.colors.index(where: { color == $0 })
             if index == 2 || index == 8 { x += 28 }
@@ -83,10 +83,10 @@ class PoseView: UIView {
         ctx.strokePath();
     }
     
-    func drawKeypoints(with n_kpoints: [ViewController.BodyPoint?]) {
+    func drawKeypoints(with n_kpoints: [JointViewController.BodyPoint?]) {
         let imageFrame = view_14.first?.superview?.frame ?? .zero
         
-        let minAlpha: CGFloat = 0.1
+        let minAlpha: CGFloat = 0.4
         let maxAlpha: CGFloat = 1.0
         let maxC: Double = 0.6
         let minC: Double = 0.1
